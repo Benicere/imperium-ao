@@ -1,13 +1,13 @@
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\bin\Debug\net8.0\ImperiumAO.Common.deps.json
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\bin\Debug\net8.0\ImperiumAO.Common.dll
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\bin\Debug\net8.0\ImperiumAO.Common.pdb
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ImperiumAO.Common.csproj.AssemblyReference.cache
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ImperiumAO.Common.GeneratedMSBuildEditorConfig.editorconfig
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ImperiumAO.Common.AssemblyInfoInputs.cache
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ImperiumAO.Common.AssemblyInfo.cs
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ImperiumAO.Common.csproj.CoreCompileInputs.cache
-D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\bin\Debug\net8.0\ImperiumAO.Common.deps.json
-D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\bin\Debug\net8.0\ImperiumAO.Common.dll
-D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\bin\Debug\net8.0\ImperiumAO.Common.pdb
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ImperiumAO.Common.sourcelink.json
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ImperiumAO.Common.dll
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\refint\ImperiumAO.Common.dll
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ImperiumAO.Common.pdb
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ref\ImperiumAO.Common.dll
-D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ImperiumAO.Common.sourcelink.json

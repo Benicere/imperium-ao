@@ -1,8 +1,3 @@
-D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.csproj.AssemblyReference.cache
-D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.GeneratedMSBuildEditorConfig.editorconfig
-D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.AssemblyInfoInputs.cache
-D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.AssemblyInfo.cs
-D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.csproj.CoreCompileInputs.cache
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\bin\Debug\net8.0-windows\ImperiumAO.Client.exe
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\bin\Debug\net8.0-windows\ImperiumAO.Client.deps.json
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\bin\Debug\net8.0-windows\ImperiumAO.Client.runtimeconfig.json
@@ -39,10 +34,15 @@ D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\bin\Debug\net8.0-windo
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\bin\Debug\net8.0-windows\runtimes\win7-x86\native\libuv.dll
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\bin\Debug\net8.0-windows\ImperiumAO.Common.dll
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\bin\Debug\net8.0-windows\ImperiumAO.Common.pdb
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.csproj.AssemblyReference.cache
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.GeneratedMSBuildEditorConfig.editorconfig
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.AssemblyInfoInputs.cache
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.AssemblyInfo.cs
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.csproj.CoreCompileInputs.cache
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.sourcelink.json
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\Imperium.5A050486.Up2Date
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.dll
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\refint\ImperiumAO.Client.dll
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.pdb
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.genruntimeconfig.cache
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ref\ImperiumAO.Client.dll
-D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.sourcelink.json

@@ -2,3 +2,32 @@
 2026-05-03 16:45:49.186 -03:00 [INF] Initializing game world
 2026-05-03 16:45:49.187 -03:00 [INF] World Manager initializing
 2026-05-03 16:45:49.188 -03:00 [INF] Game server is running. Press Ctrl+C to stop.
+2026-05-03 16:57:38.396 -03:00 [INF] Starting ImperiumAO Server
+2026-05-03 16:57:42.370 -03:00 [INF] Executed DbCommand (161ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [ImperiumAO];
+2026-05-03 16:57:42.408 -03:00 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [ImperiumAO] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2026-05-03 16:57:42.422 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-03 16:57:42.458 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2026-05-03 16:57:42.460 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-03 16:57:42.474 -03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-03 16:57:42.478 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-05-03 16:57:42.488 -03:00 [INF] No migrations were applied. The database is already up to date.
+2026-05-03 16:57:42.489 -03:00 [INF] Database migrations applied successfully
+2026-05-03 16:57:42.492 -03:00 [INF] Initializing game world
+2026-05-03 16:57:42.493 -03:00 [INF] World Manager initializing
+2026-05-03 16:57:42.493 -03:00 [INF] Game server is running. Press Ctrl+C to stop.

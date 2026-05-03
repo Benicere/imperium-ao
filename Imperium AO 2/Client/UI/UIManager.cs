@@ -62,8 +62,8 @@ public class UIManager
 
         int x = (int)position.X;
         int y = (int)position.Y;
-        const int charWidth = 6;
-        const int charHeight = 8;
+        const int charWidth = 8;
+        const int charHeight = 12;
 
         foreach (char c in text)
         {
@@ -74,10 +74,39 @@ public class UIManager
             }
             else if (c >= 32 && c < 127)
             {
-                var rect = new Rectangle(x, y, charWidth, charHeight);
-                spriteBatch.Draw(_whitePixel, rect, color);
-                x += charWidth + 1;
+                DrawCharacter(spriteBatch, c, x, y, charWidth, charHeight, color);
+                x += charWidth + 2;
             }
+        }
+    }
+
+    private void DrawCharacter(SpriteBatch spriteBatch, char c, int x, int y, int width, int height, Color color)
+    {
+        if (_whitePixel == null) return;
+
+        // Draw a simple representation of each character
+        int centerX = x + width / 2;
+        int centerY = y + height / 2;
+
+        if (char.IsLetter(c))
+        {
+            // Letters: draw filled rectangle
+            spriteBatch.Draw(_whitePixel, new Rectangle(x + 1, y + 1, width - 2, height - 2), color);
+        }
+        else if (char.IsDigit(c))
+        {
+            // Digits: draw outlined rectangle
+            DrawBox(spriteBatch, new Rectangle(x, y, width, height), color, 1);
+        }
+        else if (c == ':' || c == '-' || c == '_')
+        {
+            // Separators: draw horizontal line
+            spriteBatch.Draw(_whitePixel, new Rectangle(x, centerY, width, 2), color);
+        }
+        else
+        {
+            // Default: small dot
+            spriteBatch.Draw(_whitePixel, new Rectangle(centerX - 2, centerY - 2, 4, 4), color);
         }
     }
 

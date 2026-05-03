@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ImperiumAO.Common")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6590bd18d8877e4e4902f9fae992c1139eb435d0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a3f0728788d0cf07838ed8ea8351dfa9b5fc310")]
 [assembly: System.Reflection.AssemblyProductAttribute("ImperiumAO.Common")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ImperiumAO.Common")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
