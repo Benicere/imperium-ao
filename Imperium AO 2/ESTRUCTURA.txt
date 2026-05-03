@@ -1,0 +1,177 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    IMPERIUMAO - ESTRUCTURA DEL PROYECTO C#
+═══════════════════════════════════════════════════════════════════════════════
+
+Imperium AO 2/
+│
+├── 📄 ImperiumAO.CSharp.sln                 [Solución principal]
+│
+├── 📁 Common/                               [Librerías compartidas - .NET 8]
+│   │
+│   ├── 📄 ImperiumAO.Common.csproj          [Configuración de proyecto]
+│   │
+│   ├── 📁 Database/
+│   │   └── 📄 DatabaseConfig.cs             [Configuración de BD]
+│   │
+│   ├── 📁 Entities/
+│   │   ├── 📄 Character.cs                  [Clase base para personajes]
+│   │   ├── 📄 Player.cs                     [Jugador (extiende Character)]
+│   │   └── 📄 Npc.cs                        [NPC (extiende Character)]
+│   │
+│   └── 📁 Network/
+│       └── 📄 ByteBuffer.cs                 [Serialización de red ⭐ Convertido VB6]
+│
+├── 📁 Server/                               [Servidor de aplicación - .NET 8 Console]
+│   │
+│   ├── 📄 ImperiumAO.Server.csproj          [Configuración de proyecto]
+│   │
+│   ├── 📄 Program.cs                        [Punto de entrada (Main)]
+│   │   └── Configura DI, logging, servicios
+│   │
+│   ├── 📄 ServiceConfiguration.cs           [Inyección de Dependencias]
+│   │   └── AddConfiguration()
+│   │   └── AddGameServices()
+│   │
+│   ├── 📄 GameServer.cs                     [Gestor principal del servidor]
+│   │   ├── StartAsync()
+│   │   ├── ShutdownAsync()
+│   │   └── Update loop
+│   │
+│   ├── 📁 Core/                             [Sistemas principales]
+│   │   │
+│   │   ├── 📄 IWorldManager.cs              [Interfaz - Gestor del mundo]
+│   │   ├── 📄 WorldManager.cs               [Implementación - Mundo]
+│   │   │   ├── InitializeAsync()
+│   │   │   ├── ShutdownAsync()
+│   │   │   └── UpdateAsync()
+│   │   │
+│   │   ├── 📄 IPlayerManager.cs             [Interfaz - Gestor de jugadores]
+│   │   ├── 📄 PlayerManager.cs              [Implementación - Jugadores]
+│   │   │   ├── LoadPlayerAsync()
+│   │   │   ├── SavePlayerAsync()
+│   │   │   └── SaveAllAsync()
+│   │   │
+│   │   ├── 📄 INpcManager.cs                [Interfaz - Gestor de NPCs]
+│   │   ├── 📄 NpcManager.cs                 [Implementación - NPCs]
+│   │   │   ├── InitializeAsync()
+│   │   │   └── GetNpcs()
+│   │   │
+│   │   ├── 📄 ICombatSystem.cs              [Interfaz - Sistema de combate]
+│   │   ├── 📄 CombatSystem.cs               [Implementación - Combate]
+│   │   │   ├── Attack()
+│   │   │   ├── TakeDamage()
+│   │   │   └── CalculateDamage()
+│   │   │
+│   │   ├── 📄 ISkillSystem.cs               [Interfaz - Sistema de habilidades]
+│   │   └── 📄 SkillSystem.cs                [Implementación - Habilidades]
+│   │       ├── UseSkill()
+│   │       └── GetSkillLevel()
+│   │
+│   └── 📄 appsettings.json                  [Configuración (BD, logging)]
+│       ├── Database.CharacterConnectionString
+│       ├── Database.AccountConnectionString
+│       └── Logging settings
+│
+├── 📁 Client/                               [Cliente Windows Forms - En desarrollo]
+│   │
+│   ├── 📄 ImperiumAO.Client.csproj          [Configuración de proyecto]
+│   │
+│   └── [Estructura pendiente de definir]
+│
+├── 📄 README.md                             [Instrucciones de instalación/uso]
+│   ├── Requisitos
+│   ├── Instalación
+│   ├── Configuración BD
+│   ├── Ejecución
+│   └── Testing
+│
+└── 📄 .gitignore                            [Git ignore configuration]
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 DEPENDENCIAS DEL PROYECTO
+
+Common (Librería compartida):
+├── MySqlConnector 2.3.7             [Driver MySQL async]
+└── [Ninguna otra referencia externa requerida]
+
+Server (Servidor):
+├── ImperiumAO.Common                [Referencia interna]
+├── MySqlConnector 2.3.7             [Driver MySQL]
+├── Microsoft.Extensions.Configuration      [Config. JSON]
+├── Microsoft.Extensions.DependencyInjection [Inyección DI]
+├── Microsoft.Extensions.Logging            [Logging]
+└── Serilog 3.1.1                    [Logging estructurado]
+
+Client (Cliente):
+├── ImperiumAO.Common                [Referencia interna]
+└── MySqlConnector 2.3.7             [Driver MySQL]
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔧 CONFIGURACIÓN DE COMPILACIÓN
+
+Objetivo: .NET 8.0
+Lenguaje: C# 12
+Nullable: Habilitado (#nullable enable)
+Platform: Windows (Server), Windows/Linux (Teórico)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 ESTADÍSTICAS ACTUALES
+
+Archivos C#: 20
+Líneas de código: ~1,600
+Proyectos: 3
+Soluciones: 1
+
+Módulos VB6 convertidos: 1 (ByteBuffer.cs) ⭐
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 SIGUIENTES PASOS
+
+Prioridad 1: Database Layer
+├── [ ] CharacterRepository
+├── [ ] AccountRepository
+└── [ ] Entity Framework Core (opcional)
+
+Prioridad 2: Network Layer
+├── [ ] TCP Server Listener
+├── [ ] Packet Handler
+└── [ ] Protocol Parser
+
+Prioridad 3: Game Systems
+├── [ ] ActionSystem
+├── [ ] CharacterSystem
+├── [ ] CombatSystem (mejorado)
+└── [ ] SkillSystem (completo)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✨ FEATURES IMPLEMENTADOS
+
+✅ Estructura de proyecto .NET 8
+✅ Inyección de Dependencias
+✅ Logging con Serilog
+✅ Configuración JSON
+✅ Entity base (Character, Player, NPC)
+✅ Interfaz WorldManager
+✅ Interfaz PlayerManager
+✅ Interfaz NpcManager
+✅ Interfaz CombatSystem
+✅ Interfaz SkillSystem
+✅ ByteBuffer.cs (Network serialization)
+✅ Documentación completa
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📚 DOCUMENTACIÓN DISPONIBLE
+
+1. README.md                  - Guía de instalación y uso
+2. CONVERSION_GUIDE.md        - Cómo convertir VB6 a C#
+3. PROJECT_STATUS.md          - Estado del proyecto (milestones)
+4. ESTRUCTURA.txt             - Este archivo (navegación)
+5. convert-vb6-to-csharp.ps1 - Script de asistencia PowerShell
+
+═══════════════════════════════════════════════════════════════════════════════
