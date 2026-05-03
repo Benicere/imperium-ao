@@ -1,0 +1,4 @@
+2026-05-03 16:45:49.119 -03:00 [INF] Starting ImperiumAO Server
+2026-05-03 16:45:49.186 -03:00 [INF] Initializing game world
+2026-05-03 16:45:49.187 -03:00 [INF] World Manager initializing
+2026-05-03 16:45:49.188 -03:00 [INF] Game server is running. Press Ctrl+C to stop.

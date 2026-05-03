@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using ImperiumAO.Common.Database;
 using ImperiumAO.Server.Core;
+using ImperiumAO.Server.Data;
 using ImperiumAO.Server.Handlers;
 using ImperiumAO.Server.Map;
 using ImperiumAO.Server.Network;
@@ -27,6 +28,7 @@ using ImperiumAO.Server.Systems.Statistics;
 using ImperiumAO.Server.Systems.Trading;
 using ImperiumAO.Server.Systems.UI;
 using ImperiumAO.Server.Systems.World;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -38,6 +40,11 @@ public static class ServiceConfiguration
     {
         services.Configure<DatabaseConfig>(configuration.GetSection("Database"));
         services.Configure<ServerOptions>(configuration.GetSection("Server"));
+
+        var dbConfig = configuration.GetSection("Database").Get<DatabaseConfig>();
+        services.AddDbContext<ImperiumAOContext>(options =>
+            options.UseSqlServer(dbConfig?.ConnectionString ?? "Server=(localdb)\\mssqllocaldb;Database=ImperiumAO;Integrated Security=true;"));
+
         return services;
     }
 
@@ -49,8 +56,8 @@ public static class ServiceConfiguration
         services.AddHostedService<TcpNetworkServer>();
 
         // Repositories
-        services.AddScoped<IAccountRepository, AccountRepository>();
-        services.AddScoped<ICharacterRepository, CharacterRepository>();
+        services.AddScoped<IAccountRepository, ImperiumAO.Server.Data.AccountRepository>();
+        services.AddScoped<ICharacterRepository, ImperiumAO.Server.Data.CharacterRepository>();
 
         // Core Game Systems
         services.AddSingleton<IMapManager, MapManager>();

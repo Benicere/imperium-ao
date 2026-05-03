@@ -17,4 +17,6 @@ public class Player : Character
     public int Class { get; set; }
     public int Race { get; set; }
     public int Gender { get; set; }
+
+    public virtual Account? Account { get; set; }
 }
