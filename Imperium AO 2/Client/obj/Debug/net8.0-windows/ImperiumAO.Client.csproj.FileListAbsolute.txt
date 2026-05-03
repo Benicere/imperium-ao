@@ -45,3 +45,4 @@ D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windo
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.pdb
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.genruntimeconfig.cache
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ref\ImperiumAO.Client.dll
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Client\obj\Debug\net8.0-windows\ImperiumAO.Client.sourcelink.json

@@ -10,3 +10,4 @@ D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\Imper
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\refint\ImperiumAO.Common.dll
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ImperiumAO.Common.pdb
 D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ref\ImperiumAO.Common.dll
+D:\Proyectos_Codigo\Imperium AO Raiz\Imperium AO 2\Common\obj\Debug\net8.0\ImperiumAO.Common.sourcelink.json
