@@ -1,4 +1,4 @@
 using ImperiumAO.Client;
 
-var game = new ImperiumGame();
-game.Run();
+using (var game = new ImperiumGame())
+    game.Run();
