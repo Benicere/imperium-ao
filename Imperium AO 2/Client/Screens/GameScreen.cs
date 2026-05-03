@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using ImperiumAO.Common.Network;
 using ImperiumAO.Client.Network;
 using ImperiumAO.Client.GameState;
+using ImperiumAO.Client.UI;
 
 namespace ImperiumAO.Client.Screens;
 
@@ -54,63 +55,28 @@ public class GameScreen : IScreen
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch, UIManager? uiManager = null)
     {
-        spriteBatch.DrawString(
-            null,
-            "=== GAME WORLD ===",
-            new Vector2(10, 10),
-            Color.White);
+        if (uiManager == null) return;
 
-        spriteBatch.DrawString(
-            null,
-            $"Player: {_gameState.PlayerName} (ID: {_gameState.PlayerId})",
-            new Vector2(10, 40),
-            Color.White);
+        uiManager.DrawText(spriteBatch, "=== GAME WORLD ===", new Vector2(10, 10), Color.Gold);
 
-        spriteBatch.DrawString(
-            null,
-            $"Position: ({_gameState.PlayerX}, {_gameState.PlayerY})",
-            new Vector2(10, 70),
-            Color.White);
+        uiManager.DrawText(spriteBatch, $"Player: {_gameState.PlayerName} (ID: {_gameState.PlayerId})", new Vector2(10, 40), Color.White);
+        uiManager.DrawText(spriteBatch, $"Position: ({_gameState.PlayerX}, {_gameState.PlayerY})", new Vector2(10, 70), Color.White);
+        uiManager.DrawText(spriteBatch, $"HP: {_gameState.PlayerHealth}/{_gameState.PlayerMaxHealth}", new Vector2(10, 100), Color.LimeGreen);
+        uiManager.DrawText(spriteBatch, $"Gold: {_gameState.PlayerGold}", new Vector2(10, 130), Color.Yellow);
 
-        spriteBatch.DrawString(
-            null,
-            $"HP: {_gameState.PlayerHealth}/{_gameState.PlayerMaxHealth}",
-            new Vector2(10, 100),
-            Color.LimeGreen);
-
-        spriteBatch.DrawString(
-            null,
-            $"Gold: {_gameState.PlayerGold}",
-            new Vector2(10, 130),
-            Color.Yellow);
-
-        // Draw chat
         int chatY = 400;
-        spriteBatch.DrawString(
-            null,
-            "=== CHAT ===",
-            new Vector2(10, chatY),
-            Color.White);
+        uiManager.DrawText(spriteBatch, "=== CHAT ===", new Vector2(10, chatY), Color.LimeGreen);
 
         chatY += 30;
         foreach (var message in _gameState.ChatMessages)
         {
-            spriteBatch.DrawString(
-                null,
-                message,
-                new Vector2(10, chatY),
-                Color.White);
+            uiManager.DrawText(spriteBatch, message, new Vector2(10, chatY), Color.White);
             chatY += 20;
         }
 
-        // Controls
-        spriteBatch.DrawString(
-            null,
-            "Controles: WASD=Mover, ENTER=Chat, ESC=Salir",
-            new Vector2(10, 550),
-            Color.Gray);
+        uiManager.DrawText(spriteBatch, "Controles: WASD=Mover, ENTER=Chat, ESC=Salir", new Vector2(10, 550), Color.Gray);
     }
 
     private void SendWalkPacket(byte direction)

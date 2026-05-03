@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using ImperiumAO.Common.Network;
 using ImperiumAO.Client.Network;
 using ImperiumAO.Client.GameState;
+using ImperiumAO.Client.UI;
 
 namespace ImperiumAO.Client.Screens;
 
@@ -14,17 +15,21 @@ public class LoginScreen : IScreen
     private readonly GameClient _gameClient;
     private readonly ClientGameState _gameState;
     private readonly ClientPacketHandler _packetHandler;
+    private readonly UIManager _uiManager;
 
     private string _username = "";
     private string _password = "";
     private bool _isConnecting = false;
     private string _statusMessage = "Ingresa username y password";
+    private KeyboardState _previousKeyboardState;
 
-    public LoginScreen(GameClient gameClient, ClientGameState gameState)
+    public LoginScreen(GameClient gameClient, ClientGameState gameState, UIManager uiManager)
     {
         _gameClient = gameClient;
         _gameState = gameState;
+        _uiManager = uiManager;
         _packetHandler = new ClientPacketHandler(gameState);
+        _previousKeyboardState = Keyboard.GetState();
 
         _gameClient.PacketReceived += (sender, packet) => _packetHandler.HandlePacket(packet);
     }
@@ -34,72 +39,92 @@ public class LoginScreen : IScreen
         var keyState = Keyboard.GetState();
 
         if (keyState.IsKeyDown(Keys.Escape))
+        {
+            _previousKeyboardState = keyState;
             return;
-
-        if (keyState.IsKeyDown(Keys.Enter) && !_isConnecting)
-        {
-            _ = TryLoginAsync();
         }
 
-        // Simple input handling (in real implementation, use text input event)
-        if (keyState.IsKeyDown(Keys.Back) && !string.IsNullOrEmpty(_username))
-        {
-            _username = _username[..^1];
-        }
+        HandleInput(keyState);
+        _previousKeyboardState = keyState;
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch, UIManager? uiManager = null)
     {
-        spriteBatch.DrawString(
-            null,
-            "=== LOGIN ===",
-            new Vector2(300, 100),
-            Color.White);
+        var ui = uiManager ?? _uiManager;
 
-        spriteBatch.DrawString(
-            null,
-            $"Username: {_username}",
-            new Vector2(300, 150),
-            Color.White);
+        int centerX = 512;
+        int startY = 150;
 
-        spriteBatch.DrawString(
-            null,
-            $"Password: {new string('*', _password.Length)}",
-            new Vector2(300, 200),
-            Color.White);
+        ui.DrawText(spriteBatch, "=== IMPERIUM AO ===", new Vector2(centerX - 100, startY), Color.Gold);
+        ui.DrawText(spriteBatch, "LOGIN", new Vector2(centerX - 40, startY + 40), Color.White);
 
-        spriteBatch.DrawString(
-            null,
-            _statusMessage,
-            new Vector2(300, 250),
-            Color.Yellow);
+        ui.DrawText(spriteBatch, "Usuario:", new Vector2(centerX - 150, startY + 100), Color.White);
+        ui.DrawBox(spriteBatch, new Rectangle(centerX - 150, startY + 130, 300, 30), Color.DarkGray, 1);
+        ui.DrawText(spriteBatch, _username, new Vector2(centerX - 140, startY + 135), Color.White);
+
+        ui.DrawText(spriteBatch, "Contraseña:", new Vector2(centerX - 150, startY + 180), Color.White);
+        ui.DrawBox(spriteBatch, new Rectangle(centerX - 150, startY + 210, 300, 30), Color.DarkGray, 1);
+        ui.DrawText(spriteBatch, new string('*', _password.Length), new Vector2(centerX - 140, startY + 215), Color.White);
+
+        var statusColor = _statusMessage.Contains("Error") ? Color.Red :
+                         _statusMessage.Contains("exitoso") ? Color.LimeGreen :
+                         Color.Yellow;
+        ui.DrawText(spriteBatch, _statusMessage, new Vector2(centerX - 200, startY + 280), statusColor);
 
         if (_isConnecting)
         {
-            spriteBatch.DrawString(
-                null,
-                "Conectando...",
-                new Vector2(300, 300),
-                Color.Cyan);
+            ui.DrawText(spriteBatch, "Conectando...", new Vector2(centerX - 80, startY + 320), Color.Cyan);
         }
 
-        spriteBatch.DrawString(
-            null,
-            "Presiona ENTER para conectar",
-            new Vector2(300, 400),
-            Color.Gray);
+        ui.DrawButton(spriteBatch, new Rectangle(centerX - 100, startY + 360, 200, 40), "Conectar", Color.DarkSlateBlue, Color.White);
+
+        ui.DrawText(spriteBatch, "ESC para salir | ENTER para conectar", new Vector2(centerX - 200, startY + 450), Color.Gray);
+    }
+
+    private void HandleInput(KeyboardState keyState)
+    {
+        // Register key for characters
+        foreach (var key in keyState.GetPressedKeys())
+        {
+            if (_previousKeyboardState.IsKeyUp(key))
+            {
+                if (key == Keys.Enter && !_isConnecting)
+                {
+                    _ = TryLoginAsync();
+                }
+                else if (key == Keys.Back && !string.IsNullOrEmpty(_username))
+                {
+                    _username = _username[..^1];
+                }
+                else if (key >= Keys.A && key <= Keys.Z)
+                {
+                    char c = (char)(key - Keys.A + 'a');
+                    if (keyState.IsKeyDown(Keys.LeftShift) || keyState.IsKeyDown(Keys.RightShift))
+                        c = (char)(key - Keys.A + 'A');
+                    _username += c;
+                }
+                else if (key >= Keys.D0 && key <= Keys.D9)
+                {
+                    _username += (char)(key - Keys.D0 + '0');
+                }
+                else if (key == Keys.Space)
+                {
+                    _username += ' ';
+                }
+            }
+        }
     }
 
     private async Task TryLoginAsync()
     {
         if (string.IsNullOrWhiteSpace(_username) || string.IsNullOrWhiteSpace(_password))
         {
-            _statusMessage = "Ingresa username y password";
+            _statusMessage = "Ingresa usuario y contraseña";
             return;
         }
 
         _isConnecting = true;
-        _statusMessage = "Conectando...";
+        _statusMessage = "Conectando al servidor...";
 
         try
         {
@@ -113,23 +138,26 @@ public class LoginScreen : IScreen
             loginPacket.PutString(_password);
 
             await _gameClient.SendPacketAsync(loginPacket);
-            _statusMessage = "Aguardando respuesta...";
+            _statusMessage = "Aguardando respuesta del servidor...";
 
-            // Wait a bit for response
-            await Task.Delay(1000);
+            await Task.Delay(2000);
 
             if (_gameState.IsLoggedIn)
             {
-                _statusMessage = "Login exitoso!";
+                _statusMessage = "¡Login exitoso!";
             }
             else if (!string.IsNullOrEmpty(_gameState.LastError))
             {
                 _statusMessage = $"Error: {_gameState.LastError}";
             }
+            else
+            {
+                _statusMessage = "No se recibió respuesta del servidor";
+            }
         }
         catch (Exception ex)
         {
-            _statusMessage = $"Error de conexión: {ex.Message}";
+            _statusMessage = $"Error: {ex.Message}";
         }
         finally
         {

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using ImperiumAO.Client.Screens;
 using ImperiumAO.Client.GameState;
 using ImperiumAO.Client.Network;
+using ImperiumAO.Client.UI;
 
 namespace ImperiumAO.Client;
 
@@ -15,6 +16,7 @@ public class ImperiumGame : Game
     private IScreen? _currentScreen;
     private GameClient? _gameClient;
     private ClientGameState? _gameState;
+    private UIManager? _uiManager;
 
     public ImperiumGame()
     {
@@ -22,16 +24,17 @@ public class ImperiumGame : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
 
-        _graphics.PreferredBackBufferWidth = 800;
-        _graphics.PreferredBackBufferHeight = 600;
+        _graphics.PreferredBackBufferWidth = 1024;
+        _graphics.PreferredBackBufferHeight = 768;
     }
 
     protected override void Initialize()
     {
         _gameClient = new GameClient();
         _gameState = new ClientGameState();
+        _uiManager = new UIManager();
 
-        _currentScreen = new LoginScreen(_gameClient, _gameState);
+        _currentScreen = new LoginScreen(_gameClient, _gameState, _uiManager);
 
         base.Initialize();
     }
@@ -39,6 +42,7 @@ public class ImperiumGame : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+        _uiManager?.LoadContent(Content, GraphicsDevice);
     }
 
     protected override void Update(GameTime gameTime)
@@ -54,11 +58,14 @@ public class ImperiumGame : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.Black);
+        GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _spriteBatch.Begin();
-        _currentScreen?.Draw(_spriteBatch);
-        _spriteBatch.End();
+        if (_spriteBatch != null)
+        {
+            _spriteBatch.Begin();
+            _currentScreen?.Draw(_spriteBatch, _uiManager);
+            _spriteBatch.End();
+        }
 
         base.Draw(gameTime);
     }
@@ -69,6 +76,7 @@ public class ImperiumGame : Game
         {
             _gameClient?.Dispose();
             _spriteBatch?.Dispose();
+            _uiManager?.Dispose();
         }
         base.Dispose(disposing);
     }
